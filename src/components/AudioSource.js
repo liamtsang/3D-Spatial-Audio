@@ -7,7 +7,7 @@ function Sound({ url, paused}) {
     const sound = useRef()
     const { camera } = useThree();
     const [listener] = useState(() => new THREE.AudioListener());
-    const buffer = useLoader(THREE.AudioLoader, url);
+    const buffer = url
 
     useEffect(() => {
       let localRef = null;
