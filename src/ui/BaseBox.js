@@ -13,7 +13,7 @@ const BaseBox = ({ ...props }) => {
   return (
     <mesh castShadow position={props.position} ref={ref}>
       <boxGeometry args={props.args} />
-      <meshStandardMaterial color={props.color} />
+      <meshBasicMaterial color={props.color} />
     </mesh>
   );
 };

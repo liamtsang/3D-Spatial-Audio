@@ -5,8 +5,8 @@ const Floor = (props) => {
 
   return (
     <mesh receiveShadow rotation={props.rotation} ref={ref}>
-      <planeGeometry args={[1000, 1000]} />
-      <meshStandardMaterial transparent={true} opacity={0} color={props.color} />
+      <planeGeometry args={[0, 0]} />
+      <meshStandardMaterial transparent={true} opacity={.5} />
     </mesh>
   );
 };

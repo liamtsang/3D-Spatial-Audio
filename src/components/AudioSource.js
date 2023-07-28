@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
 import { useThree, useLoader, useFrame } from "@react-three/fiber";
-
+import Clouds from "./Clouds";
 import * as THREE from 'three'
 
 function Sound({ url, paused}) {
@@ -31,7 +31,9 @@ function AudioSource({url}) {
     const url1 = url
     
     return (
+      <mesh>
         <Sound url={url1} paused={false} />
+      </mesh>
     )
 }
 
