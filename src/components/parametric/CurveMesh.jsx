@@ -11,7 +11,6 @@ const CurveMesh = ({ material, tubeData, channelData, loadTime }) => {
       meshRef.current.material.uniforms.vibration.value += channelData[p]/200;
       // meshRef.current.material.uniforms.animateStrength.value = channelData[p]*2;
       // meshRef.current.material.uniforms.animateRadius.value = channelData[p]*2;
-      console.log(meshRef)
     }
   });
   return (

@@ -18,11 +18,11 @@ function cloneAudioBufferMono(fromAudioBuffer) {
     return audioBuffer;
 }
 
-function MovingAudioSource({url}) {
+function MovingAudioSource(props) {
     const [loadtime, setLoadtime] = useState("");
 
     const myMesh = useRef()
-    const buffer = useLoader(THREE.AudioLoader, url);
+    const buffer = useLoader(THREE.AudioLoader, props.url);
     const monobuffer = cloneAudioBufferMono(buffer);
     const channelDataAudio = buffer.getChannelData(0);
     const channelDataX = buffer.getChannelData(1);
@@ -37,14 +37,16 @@ function MovingAudioSource({url}) {
         } else {
             let p = Math.floor((clock.elapsedTime-loadtime)*48000);
             let newPosition = new THREE.Vector3(channelDataX[p]*10,channelDataZ[p]*10,channelDataY[p]*10);
-            myMesh.current.position.lerp(newPosition, .1);
+            let propsVector = new THREE.Vector3(props.vx,props.vy,props.vz);
+            let finalPos = newPosition.add(propsVector)
+            myMesh.current.position.lerp(finalPos, .1);
         }
     })
 
     return (
         <mesh ref={myMesh}>
-            {loadtime>0 && <ShapingCurves scale={[5,5,5]} channelData={channelDataAmp} loadTime={loadtime}/>}
-            <AudioSource url={monobuffer}></AudioSource>
+            {loadtime>0 && <ShapingCurves scale={[3,3,3]} channelData={channelDataAmp} loadTime={loadtime}/>}
+            <AudioSource url={monobuffer} paused={props.paused} ></AudioSource>
         </mesh>
     )    
 }

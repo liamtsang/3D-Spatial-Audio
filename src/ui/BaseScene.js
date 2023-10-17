@@ -15,7 +15,7 @@ const BasicScene = ({ children }) => {
         <Physics gravity={[0, -9.8, 0]}>
           {children}
 
-          <Floor rotation={[Math.PI / -2, 0, 0]} />
+          <Floor position={[0,0,0]} rotation={[Math.PI / -2, 0, 0]} />
         </Physics>
 
         <PointerLockControls />

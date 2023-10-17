@@ -1,6 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
 import { useThree, useLoader, useFrame } from "@react-three/fiber";
-import Clouds from "./Clouds";
 import * as THREE from 'three'
 
 function Sound({ url, paused}) {
@@ -26,13 +25,13 @@ function Sound({ url, paused}) {
     return <positionalAudio ref={sound} args={[listener]} />;
 }
 
-function AudioSource({url}) {
+function AudioSource(props) {
     const myMesh = useRef()
-    const url1 = url
+    const url1 = props.url
     
-    return (
+    if (props.paused == false) return (
       <mesh>
-        <Sound url={url1} paused={false} />
+        <Sound url={props.url} paused={props.paused} />
       </mesh>
     )
 }

@@ -1,4 +1,4 @@
-import { EffectComposer, DepthOfField, SSAO, Noise, HueSaturation } from '@react-three/postprocessing';
+import { EffectComposer, DepthOfField, Vignette, SSAO, Noise, HueSaturation } from '@react-three/postprocessing';
 import { BlendFunction } from 'postprocessing'
 
 function Effects() {
@@ -9,7 +9,7 @@ function Effects() {
                 premultiply={true} // enables or disables noise premultiplication
                 blendFunction={BlendFunction.SCREEN} // blend mode
             />
-
+           
         </EffectComposer>
     )
 }
