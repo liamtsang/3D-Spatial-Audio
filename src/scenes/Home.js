@@ -12,7 +12,7 @@ const Home = ({ trackIndex}) => {
       <CustomClouds position={[0, -1, 0]} scale={[150,1,150]} rotation={[0,0,0]} rotating={true} />
 
       <Circles scale={[90,90,90]} position={[0,-2,0]}/>
-
+      <Sky inclination={0} azimuth={180}/>
       <PillarModel position={[0,5,9]} scale={[3,3,3]}/>
       <PillarModel position={[0,5,-9]} scale={[3,3,3]}/>
       <PillarModel position={[9,5,0]} scale={[3,3,3]}/>

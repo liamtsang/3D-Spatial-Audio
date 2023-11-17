@@ -41,7 +41,8 @@ const data = {
     index: { value: 0 },
     totalMeshes: { value: totalMeshes },
     radialSegments: { value: numSides },
-    vibration: {value: 0}
+    vibration: {value: 0},
+    opacity: {value: 1}
   },
   ...mat,
   fragmentShader: `
@@ -53,6 +54,7 @@ const data = {
   out vec4 outColor;
   
   uniform vec3 color;
+  uniform float opacity;
   uniform float animateRadius;
   uniform float animateStrength;
         
@@ -76,7 +78,7 @@ const data = {
     vec3 curColor = mix(color, vec3(1.), smoothstep(t - edge, t + edge, vUv.y) * animateStrength);
   
     // final color
-    outColor = vec4(diffuse * curColor, 1.0);
+    outColor = vec4(diffuse * curColor, opacity);
   }`,
   vertexShader: glsl`
   // attributes of our mesh
@@ -319,10 +321,11 @@ const ShapingCurves = (props) => {
       {[...Array(totalMeshes).keys()].map((_, i) => {
         const t = totalMeshes <= 1 ? 0 : i / (totalMeshes - 1);
         const m = material.clone();
+        m.transparent = true;
         m.uniforms = THREE.UniformsUtils.clone(data.uniforms);
         m.uniforms.index.value = t;
         m.uniforms.thickness.value = randomFloat(0.005, 0.0075);
-        return <CurveMesh key={i} material={m} tubeData={tubeData} channelData={props.channelData} loadTime={props.loadTime}/>;
+        return <CurveMesh key={i} material={m} tubeData={tubeData} channelDataAmp={props.channelDataCentroid} channelDataCentroid={props.channelDataAmp} loadTime={props.loadTime}/>;
       })}
     </object3D>
   );

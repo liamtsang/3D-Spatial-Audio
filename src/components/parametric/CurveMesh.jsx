@@ -1,14 +1,15 @@
 import { useFrame } from "@react-three/fiber";
 import { useRef } from "react";
 
-const CurveMesh = ({ material, tubeData, channelData, loadTime }) => {
+const CurveMesh = ({ material, tubeData, channelDataAmp, channelDataCentroid, loadTime }) => {
   const meshRef = useRef();
   const { posArray, angleArray, uvArray } = tubeData;
   useFrame(({clock}) => {
     if (meshRef?.current) {
       let p = Math.floor((clock.elapsedTime-loadTime)*48000);
       meshRef.current.material.uniforms.time.value += .01;
-      meshRef.current.material.uniforms.vibration.value += channelData[p]/200;
+      meshRef.current.material.uniforms.opacity.value = channelDataAmp[p]/3;
+      // meshRef.current.material.uniforms.opacity = channelDataCentroid[p]/200;
       // meshRef.current.material.uniforms.animateStrength.value = channelData[p]*2;
       // meshRef.current.material.uniforms.animateRadius.value = channelData[p]*2;
     }

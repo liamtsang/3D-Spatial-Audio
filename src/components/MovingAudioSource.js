@@ -45,7 +45,7 @@ function MovingAudioSource(props) {
 
     return (
         <mesh ref={myMesh}>
-            {loadtime>0 && <ShapingCurves scale={[3,3,3]} channelData={channelDataAmp} loadTime={loadtime}/>}
+            {loadtime>0 && <ShapingCurves scale={[1,1,1]} channelDataAmp={channelDataAmp} channelDataCentroid={channelDataCentroid} loadTime={loadtime}/>}
             <AudioSource url={monobuffer} paused={props.paused} ></AudioSource>
         </mesh>
     )    
