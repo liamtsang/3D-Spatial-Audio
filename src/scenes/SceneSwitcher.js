@@ -23,8 +23,8 @@ const SceneSwitcher = ({ ...props }) => {
     <group>
       <Home trackIndex={trackNum}/>
       
-      <Portal1 onPointerOver={() => set(true)} onPointerOut={() => set(false)} position={[-4,0,0]} chooseTrack={chooseTrack} trackIndex={trackNum}/>
-      <Portal2 position={[4,0,0]} chooseTrack={chooseTrack} trackIndex={trackNum}/>
+      <Portal1 onPointerOver={() => set(true)} onPointerOut={() => set(false)} position={[-4,1,0]} chooseTrack={chooseTrack} trackIndex={trackNum}/>
+      {/* <Portal2 position={[4,1,0]} chooseTrack={chooseTrack} trackIndex={trackNum}/> */}
     </group>
   );
 };

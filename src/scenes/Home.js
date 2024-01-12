@@ -2,10 +2,12 @@ import { Sky, Stars, Stats, Clouds, Cloud } from '@react-three/drei';
 import PillarModel from '../models/Pillar';
 import CustomClouds from '../components/CustomClouds';
 import Circles from '../models/Circles';
+import Lights from '../components/Lights.js';
 
 const Home = ({ trackIndex}) => {
   if (trackIndex == 0) return (
     <group>
+      <Lights />
       <Clouds position={[0,-4,0]}>
         <Cloud segments={500} bounds={[90, 2, 90]} volume={200} />
       </Clouds>

@@ -5,6 +5,10 @@ import { useThree, useLoader, useFrame } from "@react-three/fiber";
 import AudioSource from "./AudioSource"
 import ShapingCurves from "./parametric/ShapingCurves";
 
+import Reverb from "@logue/reverb";
+import { SYSTEM } from "@thi.ng/random";
+import * as Noise from "@thi.ng/colored-noise";
+
 function cloneAudioBufferMono(fromAudioBuffer) {
     const audioBuffer = new AudioBuffer({
       length:fromAudioBuffer.length, 
@@ -30,7 +34,7 @@ function MovingAudioSource(props) {
     const channelDataZ = buffer.getChannelData(3);
     const channelDataAmp = buffer.getChannelData(4);
     const channelDataCentroid = buffer.getChannelData(5);
-    // console.log(buffer)
+
     useFrame(({clock}) => {
         if (!loadtime) {
             setLoadtime(clock.elapsedTime);
@@ -47,6 +51,7 @@ function MovingAudioSource(props) {
         <mesh ref={myMesh}>
             {loadtime>0 && <ShapingCurves scale={[1,1,1]} channelDataAmp={channelDataAmp} channelDataCentroid={channelDataCentroid} loadTime={loadtime}/>}
             <AudioSource url={monobuffer} paused={props.paused} ></AudioSource>
+            <pointLight color={"#bad4ff"} position={[0,0,0]} intensity={1} distance={50} decay={2} />
         </mesh>
     )    
 }
