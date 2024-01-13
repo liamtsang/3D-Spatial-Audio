@@ -11,35 +11,36 @@ function Sound({ url, paused}) {
     const sound = useRef()
     const { camera } = useThree();
     const [listener] = useState(() => new THREE.AudioListener());
-    //const buffer = url
+    const buffer = url
 
     useEffect(() => {
       const Audio = new THREE.Audio(listener);
-      const ctx = Audio.context;
-      console.log(ctx)
-      const reverb = new Reverb(ctx, {
-        noise: 'Noise.pink',
-        scale: 64,
-        peaks: 2,
-        randomAlgorithm: SYSTEM,
-        decay: 2,
-        delay: 0,
-        reverse: false,
-        time: 50,
-        filterType: 'lowpass',
-        filterFreq: 2200,
-        filterQ: 1,
-        mix: .5,
-        once: false,});
-      const sourceNode = ctx.createBufferSource();
-      // Connect Reverb
-      reverb.connect(sourceNode);
-      sourceNode.buffer = url;
 
-      console.log(reverb)
-      sourceNode.connect(ctx.destination);
-      const buffer = sourceNode.buffer;
-      console.log(sourceNode)
+      // const ctx = Audio.context;
+      // console.log(ctx)
+      // const reverb = new Reverb(ctx, {
+      //   noise: 'Noise.pink',
+      //   scale: 64,
+      //   peaks: 2,
+      //   randomAlgorithm: SYSTEM,
+      //   decay: 2,
+      //   delay: 0,
+      //   reverse: false,
+      //   time: 50,
+      //   filterType: 'lowpass',
+      //   filterFreq: 2200,
+      //   filterQ: 1,
+      //   mix: .5,
+      //   once: false,});
+      // const sourceNode = ctx.createBufferSource();
+      // // Connect Reverb
+      // reverb.connect(sourceNode);
+      // sourceNode.buffer = url;
+
+      // console.log(reverb)
+      // sourceNode.connect(ctx.destination);
+      // const buffer = sourceNode.buffer;
+      // console.log(sourceNode)
 
       let localRef = null;
       if (sound.current) localRef = sound.current;
