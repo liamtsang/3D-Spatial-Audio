@@ -18,7 +18,7 @@ export default function AngelModel(props) {
   const Ctrl2 = useRef()
   const Ctrl3 = useRef()
   const Ctrl4 = useRef()
-  const { nodes, materials, animations } = useGLTF('/assets/models/biblically_accurate_throne_angel-transformed.glb')
+  const { nodes, materials, animations } = useGLTF('/models/biblically_accurate_throne_angel-transformed.glb')
   const { actions } = useAnimations(animations, group)
 
   useFrame(({clock}) => {

@@ -105,8 +105,8 @@ console.log(ref);
           <Edges scale={1} threshold={15} color="teal" />
         </Box>
         <Cavern position={[0,25,0]} scale={[10,10,10]} rotation={[-3.14/2,0,0]}/>
-        <MovingAudioSource vx={0} vy={0} vz={0} paused={!trackVisible} url="/assets/music/aphrodite_9_12_take_2.wav"></MovingAudioSource>
-        <MovingAudioSource vx={0} vy={0} vz={0} paused={!trackVisible} url="/assets/music/eros_9_25_take_7.wav"></MovingAudioSource>
+        <MovingAudioSource vx={0} vy={0} vz={0} paused={!trackVisible} url="/music/aphrodite_9_12_take_2.wav"></MovingAudioSource>
+        <MovingAudioSource vx={0} vy={0} vz={0} paused={!trackVisible} url="/music/eros_9_25_take_7.wav"></MovingAudioSource>
         
       </mesh>
     );

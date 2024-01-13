@@ -98,8 +98,8 @@ function Track2(props) {
             thickness={.25}
           />
         </Box>
-        <MovingAudioSource vx={0} vy={9} vz={-8} paused={!trackVisible} url="/assets/music/aphrodite_9_12_take_2.wav"></MovingAudioSource>
-        <MovingAudioSource vx={0} vy={9} vz={-8} paused={!trackVisible} url="/assets/music/eros_9_25_take_7.wav"></MovingAudioSource>
+        <MovingAudioSource vx={0} vy={9} vz={-8} paused={!trackVisible} url="/music/aphrodite_9_12_take_2.wav"></MovingAudioSource>
+        <MovingAudioSource vx={0} vy={9} vz={-8} paused={!trackVisible} url="/music/eros_9_25_take_7.wav"></MovingAudioSource>
         <CustomClouds position={[0, -5, 0]} scale={[15,2,15]} rotation={[0,0,0]}/>
         <Sky inclination={0} azimuth={180}/>
 

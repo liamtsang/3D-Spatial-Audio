@@ -14,7 +14,7 @@ import { useGLTF } from '@react-three/drei'
 export default function Temple(props) {
   
 
-  const { nodes, materials } = useGLTF('/assets/models/temple-transformed.glb')
+  const { nodes, materials } = useGLTF('/models/temple-transformed.glb')
   return (
     <group {...props} dispose={null}>
       <mesh geometry={nodes.Temple001_Temple_0.geometry} material={materials.Temple} position={[-15.611, 0, 0]} rotation={[-Math.PI / 2, 0, 0]} scale={2.668} />

@@ -7,7 +7,7 @@ import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 
 export default function Circles(props) {
-  const { nodes, materials } = useGLTF('assets/models/circles.glb')
+  const { nodes, materials } = useGLTF('models/circles.glb')
   return (
     <group {...props} dispose={null}>
       <mesh geometry={nodes.Curve001.geometry} material={materials['SVGMat.001']} position={[-0.136, 0, 0.135]} />

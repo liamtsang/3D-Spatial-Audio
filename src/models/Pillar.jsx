@@ -7,7 +7,7 @@ import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 
 export default function PillarModel(props) {
-  const { nodes, materials } = useGLTF('/assets/models/pillar-transformed.glb')
+  const { nodes, materials } = useGLTF('/models/pillar-transformed.glb')
 
   return (
     <group {...props} dispose={null}>

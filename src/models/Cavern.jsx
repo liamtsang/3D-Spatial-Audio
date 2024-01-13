@@ -11,7 +11,7 @@ import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 
 export function Cavern(props) {
-  const { nodes, materials } = useGLTF('assets/models/grotto_cavern_cave.glb')
+  const { nodes, materials } = useGLTF('models/grotto_cavern_cave.glb')
   return (
     <group {...props} dispose={null}>
       <mesh geometry={nodes.Object_2.geometry} material={materials.defaultMat} rotation={[-Math.PI / 2, 0, 0]} scale={1.439} />
