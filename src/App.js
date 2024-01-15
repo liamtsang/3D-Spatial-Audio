@@ -12,8 +12,6 @@ class App extends React.Component {
       <BaseScene>
         <Stats />
         <Stars />
-        <Effects />
-        <BaseCharacter controls position={[0, 2, 0]} args={[0.5]} color="yellow" />
 
         <SceneSwitcher />
       </BaseScene>
