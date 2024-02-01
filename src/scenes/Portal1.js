@@ -185,15 +185,15 @@ function Track1(props) {
           vy={15}
           vz={0}
           paused={false}
-          url='music/aphrodite_9_12_take_2.wav'
-        ></MovingAudioSource>
+          url='https://dl.dropbox.com/scl/fi/6okqzgpa4l7a4a117urji/aphrodite_9_12_take_2.wav?rlkey=u49knyja12alszh7kk9dmmax2'
+        />
         <MovingAudioSource
           vx={0}
           vy={15}
           vz={0}
           paused={false}
-          url='music/eros_9_25_take_7.wav'
-        ></MovingAudioSource>
+          url='https://dl.dropbox.com/scl/fi/3t5drpfsqs5h8ls9fzn0e/eros_9_25_take_7.wav?rlkey=u4mrtsb8y72ilgnxfp7st3ghz'
+        />
       </Suspense>
     </mesh>
   )
