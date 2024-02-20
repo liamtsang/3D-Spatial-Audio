@@ -31,8 +31,7 @@ const Portal2 = ({ chooseTrack, trackIndex, position }) => {
       <mesh onClick={() => setTrackVisible(trackVisible => !trackVisible)} visible={portalVisible} castShadow position={position}>
         <octahedronGeometry/>
         <MeshDistortMaterial distort={.25} speed={5} >
-          <GradientTexture stops={[0, 1]} // As many stops as you want
-      colors={['blue', 'grey']} size={1024} />
+          <GradientTexture stops={[0, 1]} colors={['blue', 'grey']} size={1024} />
         </MeshDistortMaterial>
       </mesh>
       <MyContext.Provider value={{ trackVisible, setTrackVisible }}>
@@ -102,7 +101,6 @@ function Track2(props) {
         <MovingAudioSource vx={0} vy={9} vz={-8} paused={!trackVisible} url="/music/eros_9_25_take_7.wav"></MovingAudioSource>
         <CustomClouds position={[0, -5, 0]} scale={[15,2,15]} rotation={[0,0,0]}/>
         <Sky inclination={0} azimuth={180}/>
-
       </mesh>
     );
 }

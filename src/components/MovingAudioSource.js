@@ -4,7 +4,8 @@ import {
   Sphere,
   MeshWobbleMaterial,
   MeshDistortMaterial,
-  GradientTexture
+  GradientTexture,
+  Loader
 } from '@react-three/drei'
 import React, { Suspense, useRef, useEffect, useState } from 'react'
 import { useThree, useLoader, useFrame } from '@react-three/fiber'
@@ -29,7 +30,7 @@ function cloneAudioBufferMono(fromAudioBuffer) {
 }
 
 function MovingAudioSource(props) {
-  const [loadtime, setLoadtime] = useState('')
+  const [loadtime, setLoadtime] = useState(0)
 
   const myMesh = useRef()
   const buffer = useLoader(THREE.AudioLoader, props.url)
@@ -58,26 +59,28 @@ function MovingAudioSource(props) {
   })
 
   return (
-    <mesh ref={myMesh}>
-      {loadtime > 0 && (
-        <ShapingCurves
-          scale={[1, 1, 1]}
-          channelDataAmp={channelDataAmp}
-          channelDataCentroid={channelDataCentroid}
-          loadTime={loadtime}
+    <Suspense fallback={<Loader />}>
+      <mesh ref={myMesh}>
+        {loadtime > 0 && (
+          <ShapingCurves
+            scale={[1, 1, 1]}
+            channelDataAmp={channelDataAmp}
+            channelDataCentroid={channelDataCentroid}
+            loadTime={loadtime}
+          />
+        )}
+        <Suspense fallback={<Loader />}>
+          <AudioSource url={monobuffer} paused={props.paused}></AudioSource>
+        </Suspense>
+        <pointLight
+          color={'#bad4ff'}
+          position={[0, 0, 0]}
+          intensity={1}
+          distance={50}
+          decay={2}
         />
-      )}
-      <Suspense>
-        <AudioSource url={monobuffer} paused={props.paused}></AudioSource>
-      </Suspense>
-      <pointLight
-        color={'#bad4ff'}
-        position={[0, 0, 0]}
-        intensity={1}
-        distance={50}
-        decay={2}
-      />
-    </mesh>
+      </mesh>
+    </Suspense>
   )
 }
 

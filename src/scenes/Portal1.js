@@ -107,6 +107,7 @@ const Portal1 = ({ chooseTrack, trackIndex, position }) => {
 
 function Track1(props) {
   const { trackBool, trackInt } = useContext(MyContext)
+
   console.log(trackInt)
   let colResp = useRef()
   const [ref0] = useBox((index) => ({
@@ -136,66 +137,73 @@ function Track1(props) {
   }))
 
   return (
-    <mesh position={[0, 0, 0]} visible={trackBool}>
-      {/* Top Platform */}
-      <Box ref={ref0} visible={false} />
-      <gridHelper position={[0, 15.25, 0]} args={[6, 6, 0xff0000, 'teal']} />
-      <Box position={[0, 15, 0]} args={[6, 0.5, 6]} renderOrder={1}>
-        <mesh scale={[0.55, 1, 0.55]}>
-          <TeleportationPlane leftHand={true} rightHand={true} />
-        </mesh>
-        <meshBasicMaterial transparent={true} opacity={0.015} />
-        <Edges scale={1} threshold={15} color='teal' />
-      </Box>
+    <Suspense fallback={null}>
+      <mesh position={[0, 0, 0]} visible={trackBool}>
+        {/* Top Platform */}
+        <Suspense fallback={null}>
+          <Box ref={ref0} visible={false} />
+          <gridHelper
+            position={[0, 15.25, 0]}
+            args={[6, 6, 0xff0000, 'teal']}
+          />
+          <Box position={[0, 15, 0]} args={[6, 0.5, 6]} renderOrder={1}>
+            <mesh scale={[0.55, 1, 0.55]}>
+              <TeleportationPlane leftHand={true} rightHand={true} />
+            </mesh>
+            <meshBasicMaterial transparent={true} opacity={0.015} />
+            <Edges scale={1} threshold={15} color='teal' />
+          </Box>
 
-      {/* Floor */}
-      <Box ref={ref1} visible={false} />
-      <Box position={[0, 0, 0]} args={[50, 0.5, 50]} renderOrder={1}>
-        <mesh position={[0, -15, 0]}>
-          <TeleportationPlane leftHand={true} rightHand={true} />
-        </mesh>
-        <meshBasicMaterial color={'black'} />
-      </Box>
+          {/* Floor */}
+          <Box ref={ref1} visible={false} />
+          <Box position={[0, 0, 0]} args={[50, 0.5, 50]} renderOrder={1}>
+            <mesh position={[0, -15, 0]}>
+              <TeleportationPlane leftHand={true} rightHand={true} />
+            </mesh>
+            <meshBasicMaterial color={'black'} />
+          </Box>
 
-      {/* {/* Stair */}
-      <Box ref={ref2} visible={false} />
-      <Box
-        renderOrder={1}
-        position={[10.65, 7.55, 0]}
-        args={[21.213, 0.5, 6]}
-        rotation={[0, 0, -0.785398]}
-      >
-        <mesh scale={[1, 1, 1]}>
-          <TeleportationPlane leftHand={true} rightHand={true} />
-        </mesh>
-        <meshBasicMaterial transparent={true} opacity={0.015} />
-        <Edges scale={1} threshold={15} color='teal' />
-      </Box>
+          {/* {/* Stair */}
+          <Box ref={ref2} visible={false} />
+          <Box
+            renderOrder={1}
+            position={[10.65, 7.55, 0]}
+            args={[21.213, 0.5, 6]}
+            rotation={[0, 0, -0.785398]}
+          >
+            <mesh scale={[1, 1, 1]}>
+              <TeleportationPlane leftHand={true} rightHand={true} />
+            </mesh>
+            <meshBasicMaterial transparent={true} opacity={0.015} />
+            <Edges scale={1} threshold={15} color='teal' />
+          </Box>
+        </Suspense>
 
-      <Cavern
-        position={[0, 40, 0]}
-        scale={[10, 10, 10]}
-        rotation={[-3.14 / 2, 0, 0]}
-      />
-      {/* <MovingAudioSource vx={0} vy={0} vz={0} paused={!trackVisible} url="https://liamtsang.com/wget/aphrodite_9_12_take_2.wav"></MovingAudioSource>
-        <MovingAudioSource vx={0} vy={0} vz={0} paused={!trackVisible} url="https://liamtsang.com/wget/eros_9_25_take_7.wav"></MovingAudioSource> */}
-      <Suspense>
-        <MovingAudioSource
-          vx={0}
-          vy={15}
-          vz={0}
-          paused={false}
-          url='https://dl.dropbox.com/scl/fi/6okqzgpa4l7a4a117urji/aphrodite_9_12_take_2.wav?rlkey=u49knyja12alszh7kk9dmmax2'
+        <Cavern
+          position={[0, 40, 0]}
+          scale={[10, 10, 10]}
+          rotation={[-3.14 / 2, 0, 0]}
         />
-        <MovingAudioSource
-          vx={0}
-          vy={15}
-          vz={0}
-          paused={false}
-          url='https://dl.dropbox.com/scl/fi/3t5drpfsqs5h8ls9fzn0e/eros_9_25_take_7.wav?rlkey=u4mrtsb8y72ilgnxfp7st3ghz'
-        />
-      </Suspense>
-    </mesh>
+        {/* <MovingAudioSource vx={0} vy={0} vz={0} paused={!trackVisible} url="https://liamtsang.com/wget/aphrodite_9_12_take_2.wav"></MovingAudioSource>
+          <MovingAudioSource vx={0} vy={0} vz={0} paused={!trackVisible} url="https://liamtsang.com/wget/eros_9_25_take_7.wav"></MovingAudioSource> */}
+        <Suspense>
+          <MovingAudioSource
+            vx={0}
+            vy={15}
+            vz={0}
+            paused={false}
+            url='https://dl.dropbox.com/scl/fi/6okqzgpa4l7a4a117urji/aphrodite_9_12_take_2.wav?rlkey=u49knyja12alszh7kk9dmmax2'
+          />
+          <MovingAudioSource
+            vx={0}
+            vy={15}
+            vz={0}
+            paused={false}
+            url='https://dl.dropbox.com/scl/fi/3t5drpfsqs5h8ls9fzn0e/eros_9_25_take_7.wav?rlkey=u4mrtsb8y72ilgnxfp7st3ghz'
+          />
+        </Suspense>
+      </mesh>
+    </Suspense>
   )
 }
 

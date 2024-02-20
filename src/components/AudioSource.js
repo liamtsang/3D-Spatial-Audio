@@ -1,5 +1,6 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState, Suspense } from "react";
 import { useThree, useLoader, useFrame } from "@react-three/fiber";
+import { Loader } from "@react-three/drei";
 import Reverb from "@logue/reverb";
 import { SYSTEM } from "@thi.ng/random";
 import * as Noise from "@thi.ng/colored-noise";
@@ -64,13 +65,12 @@ function AudioSource(props) {
     const url1 = props.url
     
     if (props.paused == false) return (
+      <Suspense fallback={<Loader />}>
       <mesh>
         <Sound url={props.url} paused={props.paused} />
       </mesh>
+      </Suspense>
     )
 }
-
-
-
 
 export default AudioSource;

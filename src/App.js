@@ -19,6 +19,9 @@ class App extends React.Component {
         </BaseScene>
         <Loader />
         <Loader />
+        <Loader />
+        <Loader />
+        <Loader />
       </>
     )
   }
