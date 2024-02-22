@@ -30,12 +30,12 @@ function cloneAudioBufferMono(fromAudioBuffer) {
 }
 
 function MovingAudioSource(props) {
-  const [loadtime, setLoadtime] = useState(0)
+  const [loadtime, setLoadtime] = useState()
 
   const myMesh = useRef()
   const buffer = useLoader(THREE.AudioLoader, props.url)
   const monobuffer = cloneAudioBufferMono(buffer)
-  const channelDataAudio = buffer.getChannelData(0)
+  // const channelDataAudio = buffer.getChannelData(0)
   const channelDataX = buffer.getChannelData(1)
   const channelDataY = buffer.getChannelData(2)
   const channelDataZ = buffer.getChannelData(3)
@@ -45,8 +45,9 @@ function MovingAudioSource(props) {
   useFrame(({ clock }) => {
     if (!loadtime) {
       setLoadtime(clock.elapsedTime)
+      console.log('loadtime set to: ' + clock.elapsedTime)
     } else {
-      let p = Math.floor((clock.elapsedTime - loadtime) * 48000)
+      let p = Math.floor((clock.elapsedTime - loadtime) * 44100)
       let newPosition = new THREE.Vector3(
         channelDataX[p] * 10,
         channelDataZ[p] * 10,
@@ -70,7 +71,11 @@ function MovingAudioSource(props) {
           />
         )}
         <Suspense fallback={<Loader />}>
-          <AudioSource url={monobuffer} paused={props.paused}></AudioSource>
+          <AudioSource
+            loadtime={loadtime}
+            url={monobuffer}
+            paused={props.paused}
+          ></AudioSource>
         </Suspense>
         <pointLight
           color={'#bad4ff'}

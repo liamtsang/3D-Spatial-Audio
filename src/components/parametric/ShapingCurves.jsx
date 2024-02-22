@@ -1,17 +1,17 @@
-import * as THREE from "three";
+import * as THREE from 'three'
 
-import { useMemo, useRef } from "react";
+import { useMemo, useRef } from 'react'
 
-import createTubeGeometry from "./createTubeGeometry";
+import createTubeGeometry from './createTubeGeometry'
 
-import { randomFloat } from "./lib/random";
-import CurveMesh from "./CurveMesh";
-import glsl from "glslify";
+import { randomFloat } from './lib/random'
+import CurveMesh from './CurveMesh'
+import glsl from 'glslify'
 
-const totalMeshes = 80;
-const numSides = 8;
-const subdivisions = 200;
-const isSquare = false;
+const totalMeshes = 80
+const numSides = 8
+const subdivisions = 200
+const isSquare = false
 
 const mat = {
   side: THREE.DoubleSide,
@@ -22,9 +22,9 @@ const mat = {
     FLAT_SHADED: isSquare
   },
   glslVersion: THREE.GLSL3
-};
+}
 
-const tubeData = createTubeGeometry(numSides, subdivisions);
+const tubeData = createTubeGeometry(numSides, subdivisions)
 const data = {
   uniforms: {
     Ka: { value: new THREE.Vector3(1, 1, 1) },
@@ -35,14 +35,14 @@ const data = {
     Shininess: { value: 200.0 },
     time: { value: 0 },
     thickness: { value: 1000 },
-    color: { value: new THREE.Color("#1c7eff") },
+    color: { value: new THREE.Color('#1c7eff') },
     animateRadius: { value: 0 },
     animateStrength: { value: 0 },
     index: { value: 0 },
     totalMeshes: { value: totalMeshes },
     radialSegments: { value: numSides },
-    vibration: {value: 0},
-    opacity: {value: 1}
+    vibration: { value: 0 },
+    opacity: { value: 1 }
   },
   ...mat,
   fragmentShader: `
@@ -299,36 +299,45 @@ const data = {
     vViewPosition = -mvPosition.xyz;
     gl_Position = projectionMatrix * mvPosition;
   }`
-};
+}
 
 const ShapingCurves = (props) => {
-  const meshRef = useRef();
+  const meshRef = useRef()
 
   const material = useMemo(() => {
-    const m = new THREE.RawShaderMaterial();
-    m.side = data.side;
-    m.defines = data.defines;
-    m.glslVersion = data.glslVersion;
-    m.fragmentShader = data.fragmentShader;
-    m.vertexShader = data.vertexShader;
-    m.key = THREE.MathUtils.generateUUID();
-    m.uniformsNeedUpdate = true;
-    return m;
-  }, []);
+    const m = new THREE.RawShaderMaterial()
+    m.side = data.side
+    m.defines = data.defines
+    m.glslVersion = data.glslVersion
+    m.fragmentShader = data.fragmentShader
+    m.vertexShader = data.vertexShader
+    m.key = THREE.MathUtils.generateUUID()
+    m.uniformsNeedUpdate = true
+    return m
+  }, [])
 
   return (
     <object3D ref={meshRef} scale={props.scale}>
       {[...Array(totalMeshes).keys()].map((_, i) => {
-        const t = totalMeshes <= 1 ? 0 : i / (totalMeshes - 1);
-        const m = material.clone();
-        m.transparent = true;
-        m.uniforms = THREE.UniformsUtils.clone(data.uniforms);
-        m.uniforms.index.value = t;
-        m.uniforms.thickness.value = randomFloat(0.005, 0.0075);
-        return <CurveMesh key={i} material={m} tubeData={tubeData} channelDataAmp={props.channelDataCentroid} channelDataCentroid={props.channelDataAmp} loadTime={props.loadTime}/>;
+        const t = totalMeshes <= 1 ? 0 : i / (totalMeshes - 1)
+        const m = material.clone()
+        m.transparent = true
+        m.uniforms = THREE.UniformsUtils.clone(data.uniforms)
+        m.uniforms.index.value = t
+        m.uniforms.thickness.value = randomFloat(0.005, 0.0075)
+        return (
+          <CurveMesh
+            key={i}
+            material={m}
+            tubeData={tubeData}
+            channelDataAmp={props.channelDataAmp}
+            channelDataCentroid={props.channelDataCentroid}
+            loadTime={props.loadTime}
+          />
+        )
       })}
     </object3D>
-  );
-};
+  )
+}
 
-export default ShapingCurves;
+export default ShapingCurves
